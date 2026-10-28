@@ -225,6 +225,55 @@
   ) !important;
 }
 
+/* COACH GOOB — FULL D-PAD BUTTON HIGHLIGHTS */
+
+.glow.dpad {
+  width: 43px !important;
+  height: 45px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: rgba(0, 185, 255, 0.32) !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 5px #00aaff) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Up: wide at top, tapered at bottom */
+#up.glow.dpad {
+  clip-path: polygon(
+    23% 5%, 77% 5%, 95% 23%,
+    95% 57%, 50% 97%,
+    5% 57%, 5% 23%
+  ) !important;
+}
+
+/* Down: tapered at top, wide at bottom */
+#down.glow.dpad {
+  clip-path: polygon(
+    50% 3%, 95% 43%, 95% 77%,
+    77% 95%, 23% 95%,
+    5% 77%, 5% 43%
+  ) !important;
+}
+
+/* Left: tapered toward the center */
+#left.glow.dpad {
+  clip-path: polygon(
+    22% 5%, 57% 5%, 97% 50%,
+    57% 95%, 22% 95%,
+    5% 77%, 5% 23%
+  ) !important;
+}
+
+/* Right: tapered toward the center */
+#right.glow.dpad {
+  clip-path: polygon(
+    43% 5%, 78% 5%, 95% 23%,
+    95% 77%, 78% 95%,
+    43% 95%, 3% 50%
+  ) !important;
+}
+
 </style>
 </head>
 <body>
