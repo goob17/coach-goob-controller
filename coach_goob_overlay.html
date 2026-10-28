@@ -54,21 +54,42 @@
 }
 
 
-/* D-pad highlights — directional arrow shapes */
+
+/* Coach Goob - D-pad button-shaped highlights */
 
 .glow.dpad {
+  background: rgba(0, 190, 255, 0.65) !important;
+  border: 2px solid #b8f4ff !important;
+  box-shadow: 0 0 10px #00bfff,
+              inset 0 0 8px #8eeeff !important;
+  clip-path: none !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+#up.glow.dpad {
   width: 34px !important;
-  height: 36px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background: rgba(0, 190, 255, 0.75) !important;
-  box-shadow: none !important;
-  filter: drop-shadow(0 0 8px #00bfff);
-  clip-path: polygon(
-    50% 0%, 100% 45%, 75% 45%,
-    75% 100%, 25% 100%,
-    25% 45%, 0% 45%
-  ) !important;
+  height: 28px !important;
+  border-radius: 10px 10px 6px 6px !important;
+}
+
+#down.glow.dpad {
+  width: 34px !important;
+  height: 28px !important;
+  border-radius: 6px 6px 10px 10px !important;
+}
+
+#left.glow.dpad {
+  width: 28px !important;
+  height: 34px !important;
+  border-radius: 10px 6px 6px 10px !important;
+}
+
+#right.glow.dpad {
+  width: 28px !important;
+  height: 34px !important;
+  border-radius: 6px 10px 10px 6px !important;
+}
+
 }
 
 .glow.dpad:not(.down):not(.left):not(.right) {
