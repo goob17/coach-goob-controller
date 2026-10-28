@@ -5,275 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Coach Goob — Live Controller Overlay</title>
 <style>
-  html,body{margin:0;padding:0;background:transparent;overflow:hidden;font-family:system-ui,Arial,sans-serif}
-  #stage{position:relative;width:668px;height:539px;overflow:hidden;background:transparent;user-select:none}
-  #bodyart{position:absolute;inset:0;width:668px;height:539px;pointer-events:none}
-  .cap{position:absolute;width:74px;height:74px;object-fit:contain;pointer-events:none;z-index:3;will-change:transform;filter:drop-shadow(0 2px 3px #000b)}
-  #leftcap{left:186px;top:244px} #rightcap{left:405px;top:244px}
-  .glow{position:absolute;width:43px;height:43px;border-radius:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none;box-sizing:border-box;z-index:4;background:rgba(8,168,255,.45);border:2px solid #b4f4ff;box-shadow:0 0 13px #00afff,inset 0 0 12px #8eeeff;transition:opacity .035s}
-  .glow.on{opacity:1}
-  .glow.face::after{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:31px;font-weight:800;color:white;text-shadow:0 0 8px white,0 0 14px #00cfff;content:attr(data-symbol)}
-  .glow.dpad{
-  width:38px;
-  height:40px;
-  border-radius:7px;
-  clip-path:none;
-}
-  .glow.dpad.down{transform:translate(-50%,-50%) rotate(180deg)}
-  .glow.dpad.left{transform:translate(-50%,-50%) rotate(-90deg)}
-  .glow.dpad.right{transform:translate(-50%,-50%) rotate(90deg)}
-  .shoulder{position:absolute;width:70px;height:15px;border-radius:12px;background:#00aaff;box-shadow:0 0 16px #00bfff;opacity:0;z-index:5;top:67px;pointer-events:none}
-  .shoulder.on{opacity:.85}.shoulder.left{left:95px}.shoulder.right{right:95px}
-  .trigger{position:absolute;top:45px;width:70px;height:12px;border:1px solid #83e7ff;border-radius:10px;background:linear-gradient(90deg,#008cff,#b1faff);opacity:0;z-index:5;transform-origin:left center}
-  .trigger.on{opacity:1}.trigger.left{left:95px}.trigger.right{right:95px}
-  #status{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;border-radius:6px;background:#091826c9;color:#b9eeff;padding:3px 9px;z-index:10;pointer-events:none}
-  body.broadcast #status{display:none}
-
-/* COACH GOOB — VISUAL POLISH */
-
-/* Remove duplicate PS5 button symbols */
-.glow.face::after {
-  display: none !important;
-  content: none !important;
-}
-
-/* Bigger, centered thumbsticks */
-.cap {
-  width: 90px !important;
-  height: 90px !important;
-}
-
-#leftcap {
-  left: 178px !important;
-  top: 236px !important;
-}
-
-#rightcap {
-  left: 397px !important;
-  top: 236px !important;
-}
-
-
-
-/* Coach Goob - D-pad button-shaped highlights */
-
-.glow.dpad {
-  background: rgba(0, 190, 255, 0.65) !important;
-  border: 2px solid #b8f4ff !important;
-  box-shadow: 0 0 10px #00bfff,
-              inset 0 0 8px #8eeeff !important;
-  clip-path: none !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-#up.glow.dpad {
-  width: 34px !important;
-  height: 28px !important;
-  border-radius: 10px 10px 6px 6px !important;
-}
-
-#down.glow.dpad {
-  width: 34px !important;
-  height: 28px !important;
-  border-radius: 6px 6px 10px 10px !important;
-}
-
-#left.glow.dpad {
-  width: 28px !important;
-  height: 34px !important;
-  border-radius: 10px 6px 6px 10px !important;
-}
-
-#right.glow.dpad {
-  width: 28px !important;
-  height: 34px !important;
-  border-radius: 6px 10px 10px 6px !important;
-}
-
-}
-
-.glow.dpad:not(.down):not(.left):not(.right) {
-  transform: translate(-50%, -50%) !important;
-}
-
-.glow.dpad.down {
-  transform: translate(-50%, -50%) rotate(180deg) !important;
-}
-
-.glow.dpad.left {
-  transform: translate(-50%, -50%) rotate(-90deg) !important;
-}
-
-.glow.dpad.right {
-  transform: translate(-50%, -50%) rotate(90deg) !important;
-}
-
-}
-
-/* COACH GOOB - D-PAD SHAPE AND ALIGNMENT FIX */
-
-.glow.dpad {
-  width: 37px !important;
-  height: 39px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background: rgba(0, 180, 255, .50) !important;
-  box-shadow: none !important;
-  filter: drop-shadow(0 0 5px #00bfff) !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-/* Up: pointed toward center */
-#up.glow.dpad {
-  left: 120px !important;
-  top: 150px !important;
-  clip-path: polygon(
-    20% 0%, 80% 0%, 100% 20%,
-    100% 55%, 50% 100%,
-    0% 55%, 0% 20%
-  ) !important;
-}
-
-/* Down: pointed toward center */
-#down.glow.dpad {
-  left: 120px !important;
-  top: 218px !important;
-  clip-path: polygon(
-    50% 0%, 100% 45%,
-    100% 80%, 80% 100%,
-    20% 100%, 0% 80%,
-    0% 45%
-  ) !important;
-}
-
-/* Left: pointed toward center */
-#left.glow.dpad {
-  left: 79px !important;
-  top: 184px !important;
-  clip-path: polygon(
-    20% 0%, 55% 0%, 100% 50%,
-    55% 100%, 20% 100%,
-    0% 80%, 0% 20%
-  ) !important;
-}
-
-/* Right: pointed toward center */
-#right.glow.dpad {
-  left: 161px !important;
-  top: 184px !important;
-  clip-path: polygon(
-    45% 0%, 80% 0%, 100% 20%,
-    100% 80%, 80% 100%,
-    45% 100%, 0% 50%
-  ) !important;
-}
-
-/* COACH GOOB — D-PAD PHYSICAL BUTTON SHAPES */
-
-.glow.dpad {
-  width: 42px !important;
-  height: 42px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background: rgba(0, 190, 255, 0.35) !important;
-  box-shadow: none !important;
-  filter: drop-shadow(0 0 5px #00bfff) !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-/* UP — flat top, tapered toward center */
-#up.glow.dpad {
-  left: 120px !important;
-  top: 158px !important;
-  clip-path: polygon(
-    20% 4%, 80% 4%, 96% 20%,
-    96% 58%, 50% 96%,
-    4% 58%, 4% 20%
-  ) !important;
-}
-
-/* DOWN — tapered top, flat bottom */
-#down.glow.dpad {
-  left: 120px !important;
-  top: 229px !important;
-  clip-path: polygon(
-    50% 4%, 96% 42%,
-    96% 80%, 80% 96%,
-    20% 96%, 4% 80%, 4% 42%
-  ) !important;
-}
-
-/* LEFT — pointed toward center */
-#left.glow.dpad {
-  left: 80px !important;
-  top: 195px !important;
-  clip-path: polygon(
-    20% 4%, 58% 4%, 96% 50%,
-    58% 96%, 20% 96%,
-    4% 80%, 4% 20%
-  ) !important;
-}
-
-/* RIGHT — pointed toward center */
-#right.glow.dpad {
-  left: 162px !important;
-  top: 195px !important;
-  clip-path: polygon(
-    42% 4%, 80% 4%, 96% 20%,
-    96% 80%, 80% 96%,
-    42% 96%, 4% 50%
-  ) !important;
-}
-
-/* COACH GOOB — FULL D-PAD BUTTON HIGHLIGHTS */
-
-.glow.dpad {
-  width: 43px !important;
-  height: 45px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  background: rgba(0, 185, 255, 0.32) !important;
-  box-shadow: none !important;
-  filter: drop-shadow(0 0 5px #00aaff) !important;
-  transform: translate(-50%, -50%) !important;
-}
-
-/* Up: wide at top, tapered at bottom */
-#up.glow.dpad {
-  clip-path: polygon(
-    23% 5%, 77% 5%, 95% 23%,
-    95% 57%, 50% 97%,
-    5% 57%, 5% 23%
-  ) !important;
-}
-
-/* Down: tapered at top, wide at bottom */
-#down.glow.dpad {
-  clip-path: polygon(
-    50% 3%, 95% 43%, 95% 77%,
-    77% 95%, 23% 95%,
-    5% 77%, 5% 43%
-  ) !important;
-}
-
-/* Left: tapered toward the center */
-#left.glow.dpad {
-  clip-path: polygon(
-    22% 5%, 57% 5%, 97% 50%,
-    57% 95%, 22% 95%,
-    5% 77%, 5% 23%
-  ) !important;
-}
-
-/* Right: tapered toward the center */
-#right.glow.dpad {
-  clip-path: polygon(
-    43% 5%, 78% 5%, 95% 23%,
-    95% 77%, 78% 95%,
-    43% 95%, 3% 50%
-  ) !important;
-}
-
+  /* Coach Goob — clean standalone overlay. One D-pad definition only. */
+  html,body {margin:0;padding:0;background:transparent;overflow:hidden;font-family:system-ui,Arial,sans-serif}
+  #stage {position:relative;width:668px;height:539px;overflow:hidden;background:transparent;user-select:none}
+  #bodyart {position:absolute;inset:0;width:668px;height:539px;pointer-events:none}
+  .cap {position:absolute;width:90px;height:90px;object-fit:contain;pointer-events:none;z-index:3;will-change:transform;filter:drop-shadow(0 2px 3px #000b)}
+  #leftcap {left:178px;top:236px}
+  #rightcap {left:397px;top:236px}
+  .glow {position:absolute;width:43px;height:43px;border-radius:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none;box-sizing:border-box;z-index:4;background:rgba(8,168,255,.4);border:2px solid #b4f4ff;box-shadow:0 0 13px #00afff,inset 0 0 12px #8eeeff;transition:opacity .035s}
+  .glow.on {opacity:1}
+  /* The artwork already contains the face-button symbols. */
+  .glow.face::after {content:none;display:none}
+  /* D-pad graphics: softly illuminated shells tapered inward, no added arrow symbol. */
+  .glow.dpad {width:43px;height:45px;border:0;border-radius:0;background:rgba(0,185,255,.35);box-shadow:none;filter:drop-shadow(0 0 5px #00aaff);transform:translate(-50%,-50%)}
+  #up.glow.dpad {clip-path:polygon(23% 5%,77% 5%,95% 23%,95% 57%,50% 97%,5% 57%,5% 23%)}
+  #down.glow.dpad {clip-path:polygon(50% 3%,95% 43%,95% 77%,77% 95%,23% 95%,5% 77%,5% 43%)}
+  #left.glow.dpad {clip-path:polygon(22% 5%,57% 5%,97% 50%,57% 95%,22% 95%,5% 77%,5% 23%)}
+  #right.glow.dpad {clip-path:polygon(43% 5%,78% 5%,95% 23%,95% 77%,78% 95%,43% 95%,3% 50%)}
+  .shoulder {position:absolute;width:70px;height:15px;border-radius:12px;background:#00aaff;box-shadow:0 0 16px #00bfff;opacity:0;z-index:5;top:67px;pointer-events:none}
+  .shoulder.on {opacity:.85}
+  .shoulder.left {left:95px}
+  .shoulder.right {right:95px}
+  .trigger {position:absolute;top:45px;width:70px;height:12px;border:1px solid #83e7ff;border-radius:10px;background:linear-gradient(90deg,#008cff,#b1faff);opacity:0;z-index:5;transform-origin:left center}
+  .trigger.on {opacity:1}
+  .trigger.left {left:95px}
+  .trigger.right {right:95px}
+  #status {position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;border-radius:6px;background:#091826c9;color:#b9eeff;padding:3px 9px;z-index:10;pointer-events:none}
+  body.broadcast #status {display:none}
 </style>
 </head>
 <body>
@@ -285,10 +43,10 @@
   <div class="glow face" id="circle" data-symbol="○" style="left:593px;top:194px"></div>
   <div class="glow face" id="cross" data-symbol="×" style="left:547px;top:239px"></div>
   <div class="glow face" id="square" data-symbol="□" style="left:500px;top:194px"></div>
-  <div class="glow dpad" id="up" style="left:122px;top:159px"></div>
-  <div class="glow dpad down" id="down" style="left:122px;top:229px"></div>
+  <div class="glow dpad" id="up" style="left:120px;top:158px"></div>
+  <div class="glow dpad down" id="down" style="left:120px;top:229px"></div>
   <div class="glow dpad left" id="left" style="left:80px;top:195px"></div>
-  <div class="glow dpad right" id="right" style="left:163px;top:195px"></div>
+  <div class="glow dpad right" id="right" style="left:162px;top:195px"></div>
   <div class="shoulder left" id="l1"></div><div class="shoulder right" id="r1"></div>
   <div class="trigger left" id="l2"></div><div class="trigger right" id="r2"></div>
   <div id="status">Connect controller, then press a button</div>
