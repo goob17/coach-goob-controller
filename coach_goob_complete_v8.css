@@ -143,3 +143,52 @@ html, body { margin:0!important; padding:0!important; overflow:hidden!important;
   opacity: 0.25 !important;
   box-shadow: 0 0 7px #008cff !important;
 }
+
+/* COACH GOOB V10 - Clear PS5 button presses */
+
+#gamepad-0 .abxy .button {
+  width: 39px !important;
+  height: 39px !important;
+  border-radius: 50% !important;
+  border: 2px solid transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+#gamepad-0 .abxy .button.pressed {
+  opacity: 1 !important;
+  background: rgba(0, 160, 255, .40) !important;
+  border-color: #9cf2ff !important;
+  box-shadow: 0 0 14px #00bfff,
+              inset 0 0 12px #00aaff !important;
+}
+
+#gamepad-0 .abxy .button::after {
+  color: white !important;
+  font-size: 29px !important;
+  font-family: Arial, sans-serif !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
+  text-shadow: 0 0 8px #00d9ff;
+}
+
+#gamepad-0 .abxy .a::after {
+  content: "×";
+}
+
+#gamepad-0 .abxy .b::after {
+  content: "○";
+}
+
+#gamepad-0 .abxy .x::after {
+  content: "□";
+}
+
+#gamepad-0 .abxy .y::after {
+  content: "△";
+}
