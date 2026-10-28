@@ -41,6 +41,12 @@
   body.broadcast #status {display:none}
 
 
+  /* L3 / R3 stick press indicators */
+  .stick-press {position:absolute;width:20px;height:20px;border-radius:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none;z-index:6;background:rgba(0,165,255,.82);border:2px solid #d6fbff;box-shadow:0 0 10px #00bfff,inset 0 0 6px #ffffffaa;transition:opacity .035s}
+  .stick-press.on {opacity:1}
+  #l3 {left:223px;top:281px}
+  #r3 {left:442px;top:281px}
+
 </style>
 </head>
 <body>
@@ -48,6 +54,8 @@
   <img id="bodyart" src="assets/controller_body.png" alt="Coach Goob controller body" />
   <img id="leftcap" class="cap" src="assets/stick_left.png" alt="" />
   <img id="rightcap" class="cap" src="assets/stick_right.png" alt="" />
+  <div class="stick-press" id="l3"></div>
+  <div class="stick-press" id="r3"></div>
   <div class="glow face" id="triangle" data-symbol="△" style="left:547px;top:149px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
   <div class="glow face" id="circle" data-symbol="○" style="left:595px;top:194px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
   <div class="glow face" id="cross" data-symbol="×" style="left:547px;top:239px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
@@ -65,7 +73,7 @@
 // A normal mapped DualSense in Chrome typically follows the standard gamepad layout.
 // Test in Chrome first; OBS Browser Source may not have access to your controller.
 const el = id => document.getElementById(id);
-const labels = {0:'cross',1:'circle',2:'square',3:'triangle',4:'l1',5:'r1',6:'l2',7:'r2',12:'up',13:'down',14:'left',15:'right'};
+const labels = {0:'cross',1:'circle',2:'square',3:'triangle',4:'l1',5:'r1',6:'l2',7:'r2',10:'l3',11:'r3',12:'up',13:'down',14:'left',15:'right'};
 const params=new URLSearchParams(location.search);
 if (params.has('broadcast')) document.body.classList.add('broadcast');
 
