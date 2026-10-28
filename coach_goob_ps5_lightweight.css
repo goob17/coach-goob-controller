@@ -79,3 +79,10 @@ background-repeat:no-repeat!important;background-position:0 0!important;}
   width:807px!important;height:651px!important;
   background-position:0 0!important;background-size:807px 651px!important;
 }
+
+/* V4 GPV Beta: GPV positions controllers above the editor preview origin.
+   Translate the entire skin down so the full artwork is visible.
+   This is a trial offset: adjust 300px after observing preview. */
+.controller.xbox, .controller.xbox.edit {
+  transform:translateY(300px)!important;
+}
