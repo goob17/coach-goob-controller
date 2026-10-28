@@ -16,32 +16,16 @@
   .glow.on {opacity:1}
   /* The artwork already contains the face-button symbols. */
   .glow.face::after {content:none;display:none}
-  /* Coach Goob — filled electric blue D-pad button press (single definition). */
+  /* Rounded physical D-pad caps — one shape, rotated into each direction. */
   .glow.dpad {
-    opacity:0;
-    background:rgba(0,165,255,.72);
-    border:1.5px solid rgba(190,245,255,.95);
-    box-shadow:0 0 11px rgba(0,191,255,.8),inset 0 0 7px rgba(170,240,255,.5);
+    width:43px;height:43px;border:0;border-radius:0;
+    background:none;box-shadow:none;filter:none;
     transform:translate(-50%,-50%);
-    border-radius:0;
+    overflow:visible;
   }
-  .glow.dpad.on {opacity:1}
-  #up.glow.dpad {
-    width:34px;height:31px;
-    clip-path:polygon(22% 0%,78% 0%,100% 24%,100% 58%,50% 100%,0% 58%,0% 24%);
-  }
-  #down.glow.dpad {
-    width:34px;height:31px;
-    clip-path:polygon(50% 0%,100% 42%,100% 76%,78% 100%,22% 100%,0% 76%,0% 42%);
-  }
-  #left.glow.dpad {
-    width:31px;height:34px;
-    clip-path:polygon(24% 0%,58% 0%,100% 50%,58% 100%,24% 100%,0% 78%,0% 22%);
-  }
-  #right.glow.dpad {
-    width:31px;height:34px;
-    clip-path:polygon(42% 0%,76% 0%,100% 22%,100% 78%,76% 100%,42% 100%,0% 50%);
-  }
+  .glow.dpad svg {display:block;width:100%;height:100%;overflow:visible}
+  .glow.dpad .button-fill {fill:rgba(0,165,255,.72);stroke:#bef5ff;stroke-width:1.8;filter:drop-shadow(0 0 3px #00bfff)}
+  /* SVGs have rounded true D-pad silhouettes, not cut-off polygon corners. */
   .shoulder {position:absolute;width:70px;height:15px;border-radius:12px;background:#00aaff;box-shadow:0 0 16px #00bfff;opacity:0;z-index:5;top:67px;pointer-events:none}
   .shoulder.on {opacity:.85}
   .shoulder.left {left:95px}
@@ -63,10 +47,10 @@
   <div class="glow face" id="circle" data-symbol="○" style="left:593px;top:194px"></div>
   <div class="glow face" id="cross" data-symbol="×" style="left:547px;top:239px"></div>
   <div class="glow face" id="square" data-symbol="□" style="left:500px;top:194px"></div>
-  <div class="glow dpad" id="up" style="left:119px;top:160px"></div>
-  <div class="glow dpad down" id="down" style="left:119px;top:229px"></div>
-  <div class="glow dpad left" id="left" style="left:79px;top:194px"></div>
-  <div class="glow dpad right" id="right" style="left:160px;top:194px"></div>
+  <div class="glow dpad" id="up" style="left:120px;top:160px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(0 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="down" style="left:120px;top:229px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(180 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="left" style="left:80px;top:195px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(270 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="right" style="left:162px;top:195px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(90 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
   <div class="shoulder left" id="l1"></div><div class="shoulder right" id="r1"></div>
   <div class="trigger left" id="l2"></div><div class="trigger right" id="r2"></div>
   <div id="status">Connect controller, then press a button</div>
