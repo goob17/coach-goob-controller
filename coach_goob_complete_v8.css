@@ -163,3 +163,69 @@ html, body { margin:0!important; padding:0!important; overflow:hidden!important;
 #gamepad-0 .dpad .face.right {
   border-radius: 5px 9px 9px 5px !important;
 }
+
+/* COACH GOOB — BRIGHT PS5 FACE BUTTONS */
+
+/* Align face button group */
+#gamepad-0 .abxy {
+  left: 484px !important;
+  top: 129px !important;
+}
+
+/* Hide highlights when released */
+#gamepad-0 .abxy .button {
+  position: absolute !important;
+  width: 39px !important;
+  height: 39px !important;
+  border-radius: 50% !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+  border: 2px solid transparent !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  overflow: visible !important;
+}
+
+/* Strong illumination when pressed */
+#gamepad-0 .abxy .button.pressed {
+  opacity: 1 !important;
+  background: rgba(0, 150, 255, .75) !important;
+  border: 2px solid #c4f8ff !important;
+  box-shadow:
+    0 0 10px #00bfff,
+    0 0 20px #007bff,
+    inset 0 0 12px #9ceaff !important;
+}
+
+/* Display actual PS5 symbols */
+#gamepad-0 .abxy .button::after {
+  position: absolute !important;
+  display: block !important;
+  visibility: visible !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font: bold 30px Arial, sans-serif !important;
+  line-height: 1 !important;
+  color: white !important;
+  text-shadow: 0 0 7px white,
+               0 0 12px #00cfff !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+}
+
+#gamepad-0 .abxy .a::after {
+  content: "×" !important;
+}
+
+#gamepad-0 .abxy .b::after {
+  content: "○" !important;
+}
+
+#gamepad-0 .abxy .x::after {
+  content: "□" !important;
+}
+
+#gamepad-0 .abxy .y::after {
+  content: "△" !important;
+}
