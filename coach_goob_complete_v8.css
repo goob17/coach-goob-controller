@@ -129,3 +129,37 @@ html, body { margin:0!important; padding:0!important; overflow:hidden!important;
 #gamepad-0 .abxy .y::after {
   content: "△";
 }
+
+/* COACH GOOB — D-PAD PRESS FIX */
+
+#gamepad-0 .dpad .face {
+  opacity: 0 !important;
+  background-image: none !important;
+  background-color: rgba(0, 185, 255, 0.55) !important;
+  border: 2px solid #8eeaff !important;
+  box-shadow: 0 0 12px #00bfff,
+              inset 0 0 9px #00bfff !important;
+  box-sizing: border-box !important;
+  transform: none !important;
+}
+
+#gamepad-0 .dpad .face.pressed {
+  opacity: 1 !important;
+}
+
+/* Shape each directional highlight */
+#gamepad-0 .dpad .face.up {
+  border-radius: 9px 9px 5px 5px !important;
+}
+
+#gamepad-0 .dpad .face.down {
+  border-radius: 5px 5px 9px 9px !important;
+}
+
+#gamepad-0 .dpad .face.left {
+  border-radius: 9px 5px 5px 9px !important;
+}
+
+#gamepad-0 .dpad .face.right {
+  border-radius: 5px 9px 9px 5px !important;
+}
