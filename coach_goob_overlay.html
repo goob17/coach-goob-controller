@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coach Goob — Live Controller Overlay</title>
+<style>
+  html,body{margin:0;padding:0;background:transparent;overflow:hidden;font-family:system-ui,Arial,sans-serif}
+  #stage{position:relative;width:668px;height:539px;overflow:hidden;background:transparent;user-select:none}
+  #bodyart{position:absolute;inset:0;width:668px;height:539px;pointer-events:none}
+  .cap{position:absolute;width:74px;height:74px;object-fit:contain;pointer-events:none;z-index:3;will-change:transform;filter:drop-shadow(0 2px 3px #000b)}
+  #leftcap{left:186px;top:244px} #rightcap{left:405px;top:244px}
+  .glow{position:absolute;width:43px;height:43px;border-radius:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none;box-sizing:border-box;z-index:4;background:rgba(8,168,255,.45);border:2px solid #b4f4ff;box-shadow:0 0 13px #00afff,inset 0 0 12px #8eeeff;transition:opacity .035s}
+  .glow.on{opacity:1}
+  .glow.face::after{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:31px;font-weight:800;color:white;text-shadow:0 0 8px white,0 0 14px #00cfff;content:attr(data-symbol)}
+  .glow.dpad{width:38px;height:40px;border-radius:11px;clip-path:polygon(50% 0%,100% 42%,85% 100%,15% 100%,0% 42%);}
+  .glow.dpad.down{transform:translate(-50%,-50%) rotate(180deg)}
+  .glow.dpad.left{transform:translate(-50%,-50%) rotate(-90deg)}
+  .glow.dpad.right{transform:translate(-50%,-50%) rotate(90deg)}
+  .shoulder{position:absolute;width:70px;height:15px;border-radius:12px;background:#00aaff;box-shadow:0 0 16px #00bfff;opacity:0;z-index:5;top:67px;pointer-events:none}
+  .shoulder.on{opacity:.85}.shoulder.left{left:95px}.shoulder.right{right:95px}
+  .trigger{position:absolute;top:45px;width:70px;height:12px;border:1px solid #83e7ff;border-radius:10px;background:linear-gradient(90deg,#008cff,#b1faff);opacity:0;z-index:5;transform-origin:left center}
+  .trigger.on{opacity:1}.trigger.left{left:95px}.trigger.right{right:95px}
+  #status{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;border-radius:6px;background:#091826c9;color:#b9eeff;padding:3px 9px;z-index:10;pointer-events:none}
+  body.broadcast #status{display:none}
+</style>
+</head>
+<body>
+<div id="stage">
+  <img id="bodyart" src="assets/controller_body.png" alt="Coach Goob controller body" />
+  <img id="leftcap" class="cap" src="assets/stick_left.png" alt="" />
+  <img id="rightcap" class="cap" src="assets/stick_right.png" alt="" />
+  <div class="glow face" id="triangle" data-symbol="△" style="left:546px;top:149px"></div>
+  <div class="glow face" id="circle" data-symbol="○" style="left:593px;top:194px"></div>
+  <div class="glow face" id="cross" data-symbol="×" style="left:547px;top:239px"></div>
+  <div class="glow face" id="square" data-symbol="□" style="left:500px;top:194px"></div>
+  <div class="glow dpad" id="up" style="left:122px;top:159px"></div>
+  <div class="glow dpad down" id="down" style="left:122px;top:229px"></div>
+  <div class="glow dpad left" id="left" style="left:80px;top:195px"></div>
+  <div class="glow dpad right" id="right" style="left:163px;top:195px"></div>
+  <div class="shoulder left" id="l1"></div><div class="shoulder right" id="r1"></div>
+  <div class="trigger left" id="l2"></div><div class="trigger right" id="r2"></div>
+  <div id="status">Connect controller, then press a button</div>
+</div>
+<script>
+'use strict';
+// A normal mapped DualSense in Chrome typically follows the standard gamepad layout.
+// Test in Chrome first; OBS Browser Source may not have access to your controller.
+const el = id => document.getElementById(id);
+const labels = {0:'cross',1:'circle',2:'square',3:'triangle',4:'l1',5:'r1',6:'l2',7:'r2',12:'up',13:'down',14:'left',15:'right'};
+const params=new URLSearchParams(location.search);
+if (params.has('broadcast')) document.body.classList.add('broadcast');
+const status=el('status');
+let detected=false;
+function frame(){
+  let gamepad=null;
+  try { if (navigator.getGamepads) gamepad=Array.from(navigator.getGamepads()).find(p=>p&&p.connected&&p.axes.length>=4); }
+  catch(e) {status.textContent='Gamepad access blocked: '+e.message;}
+  if(gamepad){
+    if(!detected){status.textContent='Connected: '+gamepad.id;detected=true;}
+    const axes=gamepad.axes;
+    // 22px travel: caps stay inside the illuminated wells, unlike Gamepad Viewer stick rotation.
+    for(const [id,ax,ay] of [['leftcap',0,1],['rightcap',2,3]]){
+      const dead=x=>Math.abs(x)<.07?0:x;
+      const x=dead(axes[ax]||0)*22, y=dead(axes[ay]||0)*22;
+      el(id).style.transform=`translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
+    }
+    for(const [index,id] of Object.entries(labels)){
+      const b=gamepad.buttons[Number(index)];
+      const active=!!b && (b.pressed || b.value>.18);
+      el(id).classList.toggle('on',active);
+      if(id==='l2'||id==='r2')el(id).style.transform=`scaleX(${Math.max(.12,b?.value||0)})`;
+    }
+  }else{
+    if(detected){status.textContent='Controller disconnected';detected=false;}
+    for(const id of ['leftcap','rightcap'])el(id).style.transform='translate(0,0)';
+    for(const id of Object.values(labels))el(id).classList.remove('on');
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
