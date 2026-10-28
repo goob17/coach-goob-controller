@@ -109,6 +109,65 @@
 }
 
 }
+
+/* COACH GOOB - D-PAD SHAPE AND ALIGNMENT FIX */
+
+.glow.dpad {
+  width: 37px !important;
+  height: 39px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: rgba(0, 180, 255, .50) !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 5px #00bfff) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Up: pointed toward center */
+#up.glow.dpad {
+  left: 120px !important;
+  top: 150px !important;
+  clip-path: polygon(
+    20% 0%, 80% 0%, 100% 20%,
+    100% 55%, 50% 100%,
+    0% 55%, 0% 20%
+  ) !important;
+}
+
+/* Down: pointed toward center */
+#down.glow.dpad {
+  left: 120px !important;
+  top: 218px !important;
+  clip-path: polygon(
+    50% 0%, 100% 45%,
+    100% 80%, 80% 100%,
+    20% 100%, 0% 80%,
+    0% 45%
+  ) !important;
+}
+
+/* Left: pointed toward center */
+#left.glow.dpad {
+  left: 79px !important;
+  top: 184px !important;
+  clip-path: polygon(
+    20% 0%, 55% 0%, 100% 50%,
+    55% 100%, 20% 100%,
+    0% 80%, 0% 20%
+  ) !important;
+}
+
+/* Right: pointed toward center */
+#right.glow.dpad {
+  left: 161px !important;
+  top: 184px !important;
+  clip-path: polygon(
+    45% 0%, 80% 0%, 100% 20%,
+    100% 80%, 80% 100%,
+    45% 100%, 0% 50%
+  ) !important;
+}
+
 </style>
 </head>
 <body>
