@@ -28,6 +28,40 @@
   .trigger.on{opacity:1}.trigger.left{left:95px}.trigger.right{right:95px}
   #status{position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;border-radius:6px;background:#091826c9;color:#b9eeff;padding:3px 9px;z-index:10;pointer-events:none}
   body.broadcast #status{display:none}
+
+/* COACH GOOB — VISUAL POLISH */
+
+/* Remove duplicate PS5 button symbols */
+.glow.face::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Bigger, centered thumbsticks */
+.cap {
+  width: 90px !important;
+  height: 90px !important;
+}
+
+#leftcap {
+  left: 178px !important;
+  top: 236px !important;
+}
+
+#rightcap {
+  left: 397px !important;
+  top: 236px !important;
+}
+
+/* Clean D-pad highlights with no rotation */
+.glow.dpad,
+.glow.dpad.down,
+.glow.dpad.left,
+.glow.dpad.right {
+  clip-path: none !important;
+  transform: translate(-50%, -50%) !important;
+  border-radius: 7px !important;
+}
 </style>
 </head>
 <body>
