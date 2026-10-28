@@ -16,7 +16,7 @@
   .glow.on {opacity:1}
   /* The artwork already contains the face-button symbols. */
   .glow.face::after {content:none;display:none}
-  /* Rounded physical D-pad caps — one shape, rotated into each direction. */
+  /* Rounded D-pad caps — positions fine-tuned to art. Size/color/animation unchanged. */
   .glow.dpad {
     width:43px;height:43px;border:0;border-radius:0;
     background:none;box-shadow:none;filter:none;
@@ -47,10 +47,10 @@
   <div class="glow face" id="circle" data-symbol="○" style="left:593px;top:194px"></div>
   <div class="glow face" id="cross" data-symbol="×" style="left:547px;top:239px"></div>
   <div class="glow face" id="square" data-symbol="□" style="left:500px;top:194px"></div>
-  <div class="glow dpad" id="up" style="left:120px;top:160px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(0 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
-  <div class="glow dpad" id="down" style="left:120px;top:229px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(180 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
-  <div class="glow dpad" id="left" style="left:80px;top:195px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(270 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
-  <div class="glow dpad" id="right" style="left:162px;top:195px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(90 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="up" style="left:121px;top:158px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(0 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="down" style="left:121px;top:230px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(180 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="left" style="left:79px;top:195px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(270 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="right" style="left:163px;top:195px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(90 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
   <div class="shoulder left" id="l1"></div><div class="shoulder right" id="r1"></div>
   <div class="trigger left" id="l2"></div><div class="trigger right" id="r2"></div>
   <div id="status">Connect controller, then press a button</div>
