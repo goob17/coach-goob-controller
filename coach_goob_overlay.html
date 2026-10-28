@@ -53,14 +53,40 @@
   top: 236px !important;
 }
 
-/* Clean D-pad highlights with no rotation */
-.glow.dpad,
-.glow.dpad.down,
-.glow.dpad.left,
-.glow.dpad.right {
-  clip-path: none !important;
+
+/* D-pad highlights — directional arrow shapes */
+
+.glow.dpad {
+  width: 34px !important;
+  height: 36px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: rgba(0, 190, 255, 0.75) !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 8px #00bfff);
+  clip-path: polygon(
+    50% 0%, 100% 45%, 75% 45%,
+    75% 100%, 25% 100%,
+    25% 45%, 0% 45%
+  ) !important;
+}
+
+.glow.dpad:not(.down):not(.left):not(.right) {
   transform: translate(-50%, -50%) !important;
-  border-radius: 7px !important;
+}
+
+.glow.dpad.down {
+  transform: translate(-50%, -50%) rotate(180deg) !important;
+}
+
+.glow.dpad.left {
+  transform: translate(-50%, -50%) rotate(-90deg) !important;
+}
+
+.glow.dpad.right {
+  transform: translate(-50%, -50%) rotate(90deg) !important;
+}
+
 }
 </style>
 </head>
