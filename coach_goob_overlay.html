@@ -41,14 +41,6 @@
   body.broadcast #status {display:none}
 
 
-  /* Face button precision calibration, visible only with ?calibrate=face */
-  #face-calibration {display:none;position:absolute;left:685px;top:30px;width:315px;padding:16px;background:#0c1828;color:#e5f5ff;border:1px solid #37b7ff;border-radius:10px;font:13px system-ui,sans-serif;z-index:99;box-sizing:border-box}
-  body.face-calibration {overflow:visible;background:#edf2f8}
-  body.face-calibration #face-calibration {display:block}
-  body.face-calibration .glow.face.cal-active {opacity:1!important}
-  #face-calibration button {background:#183e5e;color:white;border:1px solid #51bdfc;border-radius:5px;padding:7px 9px;cursor:pointer;margin:3px}
-  #face-calibration button.selected {background:#087bc9}
-  #face-calibration pre {white-space:pre-wrap;background:#07111c;padding:9px;border-radius:5px;font-size:12px}
 </style>
 </head>
 <body>
@@ -56,10 +48,10 @@
   <img id="bodyart" src="assets/controller_body.png" alt="Coach Goob controller body" />
   <img id="leftcap" class="cap" src="assets/stick_left.png" alt="" />
   <img id="rightcap" class="cap" src="assets/stick_right.png" alt="" />
-  <div class="glow face" id="triangle" data-symbol="△" style="left:546px;top:149px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
-  <div class="glow face" id="circle" data-symbol="○" style="left:593px;top:194px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
+  <div class="glow face" id="triangle" data-symbol="△" style="left:547px;top:149px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
+  <div class="glow face" id="circle" data-symbol="○" style="left:595px;top:194px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
   <div class="glow face" id="cross" data-symbol="×" style="left:547px;top:239px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
-  <div class="glow face" id="square" data-symbol="□" style="left:500px;top:194px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
+  <div class="glow face" id="square" data-symbol="□" style="left:499px;top:194px"><svg viewBox="0 0 46 46" aria-hidden="true"><circle class="button-fill" cx="23" cy="23" r="20"/></svg></div>
   <div class="glow dpad" id="up" style="left:122px;top:160px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(0 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
   <div class="glow dpad" id="down" style="left:122px;top:223px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(180 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
   <div class="glow dpad" id="left" style="left:90px;top:192px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(270 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
@@ -67,14 +59,6 @@
   <div class="shoulder left" id="l1"></div><div class="shoulder right" id="r1"></div>
   <div class="trigger left" id="l2"></div><div class="trigger right" id="r2"></div>
   <div id="status">Connect controller, then press a button</div>
-</div>
-<div id="face-calibration">
-  <h3 style="margin:0 0 7px">Coach Goob · Face button alignment</h3>
-  <p>Select a button and use keyboard <b>arrow keys</b> to move its glow one pixel. Shift + arrow moves five. The selected button stays blue.</p>
-  <div id="face-options"><button data-face="triangle">Triangle</button><button data-face="circle">Circle</button><button data-face="cross">Cross (X)</button><button data-face="square">Square</button></div>
-  <p id="face-readout"></p>
-  <button id="face-copy">Copy positions</button><pre id="face-coordinates"></pre>
-  <p>Send me the four positions to build your final file. No D-pad, thumbstick, bumper, or trigger changes.</p>
 </div>
 <script>
 'use strict';
@@ -84,31 +68,6 @@ const el = id => document.getElementById(id);
 const labels = {0:'cross',1:'circle',2:'square',3:'triangle',4:'l1',5:'r1',6:'l2',7:'r2',12:'up',13:'down',14:'left',15:'right'};
 const params=new URLSearchParams(location.search);
 if (params.has('broadcast')) document.body.classList.add('broadcast');
-
-if(params.get('calibrate')==='face'){
-  document.body.classList.add('face-calibration');
-  const faces=['triangle','circle','cross','square'];
-  const coordinates=Object.fromEntries(faces.map(id=>[id,{x:parseInt(el(id).style.left,10),y:parseInt(el(id).style.top,10)}]));
-  let selected='triangle';
-  function updateFaceCalibration(){
-    for(const id of faces){el(id).style.left=coordinates[id].x+'px';el(id).style.top=coordinates[id].y+'px';el(id).classList.toggle('cal-active',id===selected);}
-    document.querySelectorAll('#face-options button').forEach(btn=>btn.classList.toggle('selected',btn.dataset.face===selected));
-    el('face-readout').textContent=selected.toUpperCase()+': X '+coordinates[selected].x+', Y '+coordinates[selected].y;
-    el('face-coordinates').textContent=faces.map(id=>id+': left '+coordinates[id].x+'px; top '+coordinates[id].y+'px').join('\n');
-  }
-  document.querySelectorAll('#face-options button').forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.face;updateFaceCalibration();}));
-  document.addEventListener('keydown',event=>{
-    const step=event.shiftKey?5:1;
-    const delta={ArrowUp:[0,-step],ArrowDown:[0,step],ArrowLeft:[-step,0],ArrowRight:[step,0]}[event.key];
-    if(!delta)return;
-    event.preventDefault();coordinates[selected].x+=delta[0];coordinates[selected].y+=delta[1];updateFaceCalibration();
-  });
-  el('face-copy').addEventListener('click',()=>{
-    const t=el('face-coordinates').textContent;
-    if(navigator.clipboard?.writeText){navigator.clipboard.writeText(t).then(()=>{el('face-copy').textContent='Copied!';}).catch(()=>{el('face-copy').textContent='Copy from box below';});}
-  });
-  updateFaceCalibration();
-}
 
 const status=el('status');
 let detected=false;
