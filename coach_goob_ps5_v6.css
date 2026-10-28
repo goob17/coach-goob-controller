@@ -1,0 +1,42 @@
+/* COACH GOOB V6 — Live buttons and sticks (Xbox input mapping, PS5 artwork)
+   Replaces V5 completely. Use GPV Classic > Xbox One > Edit CSS URL.
+   Artwork: https://github.com/goob17/coach-goob-controller */
+html,body{margin:0!important;padding:0!important;overflow:hidden!important;background:transparent!important}
+#gamepads.container{position:relative!important;width:668px!important;height:539px!important;margin:0!important;overflow:visible!important}
+#gamepad-0.controller.xbox,#gamepad-0.controller.xbox.half,.controller.xbox.half{
+ display:block!important;position:absolute!important;top:0!important;left:0!important;right:auto!important;bottom:auto!important;
+ margin:0!important;padding:0!important;transform:none!important;translate:none!important;
+ width:668px!important;height:539px!important;min-width:668px!important;
+ background-image: url('https://raw.githubusercontent.com/goob17/coach-goob-controller/main/Neon%20Blue%20Coach%20Goob%20Controller.png') !important;
+ background-size:668px 539px!important;background-position:0 0!important;background-repeat:no-repeat!important}
+#gamepad-1,#gamepad-2,#gamepad-3{display:none!important}
+/* Restore live GPV layers that V5 deliberately hid. */
+#gamepad-0 .sticks,#gamepad-0 .abxy,#gamepad-0 .dpad,#gamepad-0 .arrows,#gamepad-0 .bumpers,#gamepad-0 .triggers{visibility:visible!important;display:block!important}
+#gamepad-0 .quadrant,#gamepad-0 .meta{display:none!important}
+/* Input glow: invisible at rest, bright blue while pressed. */
+#gamepad-0 .abxy{position:absolute!important;left:467px!important;top:109px!important;width:137px!important;height:137px!important;background:none!important}
+#gamepad-0 .button{position:absolute!important;width:48px!important;height:48px!important;border-radius:50%!important;border:0!important;background:rgba(0,170,255,.5)!important;box-shadow:0 0 15px #008cff,inset 0 0 7px #b8f7ff!important;opacity:0!important;margin:0!important}
+#gamepad-0 .button.pressed{opacity:1!important}
+#gamepad-0 .a{left:45px!important;top:89px!important}#gamepad-0 .b{left:89px!important;top:45px!important}#gamepad-0 .x{left:0!important;top:45px!important}#gamepad-0 .y{left:45px!important;top:0!important}
+#gamepad-0 .dpad{position:absolute!important;left:76px!important;top:116px!important;width:104px!important;height:114px!important;background:none!important}
+#gamepad-0 .face{position:absolute!important;background:rgba(0,189,255,.55)!important;box-shadow:0 0 12px #009dff!important;opacity:0!important;border-radius:10px!important;border:0!important}
+#gamepad-0 .face.pressed{opacity:1!important}
+#gamepad-0 .face.up{left:32px!important;top:0!important;width:40px!important;height:44px!important}
+#gamepad-0 .face.down{left:32px!important;top:69px!important;width:40px!important;height:44px!important}
+#gamepad-0 .face.left{left:0!important;top:35px!important;width:40px!important;height:44px!important}
+#gamepad-0 .face.right{left:64px!important;top:35px!important;width:40px!important;height:44px!important}
+/* Analog stick caps retain native gamepadviewer movement behavior. */
+#gamepad-0 .sticks{position:absolute!important;left:191px!important;top:226px!important;width:244px!important;height:80px!important;background:none!important}
+#gamepad-0 .stick{position:absolute!important;width:66px!important;height:66px!important;border-radius:50%!important;background:rgba(0,40,85,.10)!important;border:2px solid rgba(0,160,255,.65)!important;box-shadow:0 0 5px #006dff!important;box-sizing:border-box!important}
+#gamepad-0 .stick.left{left:0!important;top:0!important}#gamepad-0 .stick.right{left:208px!important;top:0!important}
+#gamepad-0 .stick.pressed{background:rgba(0,180,255,.35)!important;box-shadow:0 0 14px #16c9ff!important}
+#gamepad-0 .arrows{position:absolute!important;left:172px!important;top:70px!important;width:314px!important;height:33px!important;background:none!important}
+#gamepad-0 .back,#gamepad-0 .start{position:absolute!important;width:23px!important;height:33px!important;border-radius:8px!important;background:#00aeff!important;opacity:0!important}
+#gamepad-0 .back{left:0!important}#gamepad-0 .start{right:0!important}
+#gamepad-0 .back.pressed,#gamepad-0 .start.pressed{opacity:.75!important;box-shadow:0 0 14px #00c7ff!important}
+#gamepad-0 .bumpers{position:absolute!important;left:87px!important;top:61px!important;width:476px!important;height:30px!important;background:none!important}
+#gamepad-0 .bumper{position:absolute!important;width:92px!important;height:30px!important;background:#098bff!important;opacity:0!important;border-radius:12px!important;box-shadow:0 0 15px #158aff!important}
+#gamepad-0 .bumper.right{right:0!important;left:auto!important}#gamepad-0 .bumper.pressed{opacity:.7!important}
+#gamepad-0 .triggers{position:absolute!important;left:88px!important;top:11px!important;width:476px!important;height:89px!important;background:none!important}
+#gamepad-0 .trigger{position:absolute!important;width:92px!important;height:89px!important;background:#0789ff!important;opacity:0!important;border-radius:22px!important;box-shadow:0 0 15px #168cff!important}
+#gamepad-0 .trigger.right{right:0!important;left:auto!important}#gamepad-0 .trigger.pressed{opacity:.7!important}
