@@ -80,69 +80,6 @@ html, body { margin:0!important; padding:0!important; overflow:hidden!important;
 #gamepad-0 .trigger{position:absolute!important;width:92px!important;height:89px!important;background:#0789ff!important;opacity:0!important;border-radius:22px!important;box-shadow:0 0 15px #168cff!important}
 #gamepad-0 .trigger.right{right:0!important;left:auto!important}#gamepad-0 .trigger.pressed{opacity:.7!important}
 
-/* COACH GOOB — Input Overlay Refinement */
-
-/* Smaller, softer face button highlights */
-#gamepad-0 .abxy .button {
-  width: 34px !important;
-  height: 34px !important;
-  background-image: none !important;
-  background-color: rgba(0, 175, 255, 0.22) !important;
-  border: 1px solid rgba(120, 220, 255, 0.6) !important;
-  box-shadow: 0 0 7px rgba(0, 150, 255, 0.55) !important;
-  opacity: 0 !important;
-}
-
-#gamepad-0 .abxy .button.pressed {
-  opacity: 1 !important;
-}
-
-/* Align smaller highlights over symbols */
-#gamepad-0 .abxy .a {
-  left: 52px !important;
-  top: 96px !important;
-}
-#gamepad-0 .abxy .b {
-  left: 96px !important;
-  top: 52px !important;
-}
-#gamepad-0 .abxy .x {
-  left: 7px !important;
-  top: 52px !important;
-}
-#gamepad-0 .abxy .y {
-  left: 52px !important;
-  top: 7px !important;
-}
-
-/* Softer D-pad input effects */
-#gamepad-0 .dpad .face {
-  background: rgba(0, 170, 255, 0.20) !important;
-  box-shadow: 0 0 6px rgba(0, 145, 255, 0.55) !important;
-  opacity: 0 !important;
-}
-#gamepad-0 .dpad .face.pressed {
-  opacity: 1 !important;
-}
-
-/* Move analog indicators slightly right */
-#gamepad-0 .sticks {
-  left: 203px !important;
-}
-#gamepad-0 .stick {
-  width: 60px !important;
-  height: 60px !important;
-  border: 1px solid rgba(0, 170, 255, 0.30) !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* Reduce trigger and bumper brightness */
-#gamepad-0 .bumper.pressed,
-#gamepad-0 .trigger.pressed {
-  opacity: 0.25 !important;
-  box-shadow: 0 0 7px #008cff !important;
-}
 
 /* COACH GOOB V10 - Clear PS5 button presses */
 
