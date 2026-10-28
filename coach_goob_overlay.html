@@ -168,6 +168,63 @@
   ) !important;
 }
 
+/* COACH GOOB — D-PAD PHYSICAL BUTTON SHAPES */
+
+.glow.dpad {
+  width: 42px !important;
+  height: 42px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: rgba(0, 190, 255, 0.35) !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 5px #00bfff) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* UP — flat top, tapered toward center */
+#up.glow.dpad {
+  left: 120px !important;
+  top: 158px !important;
+  clip-path: polygon(
+    20% 4%, 80% 4%, 96% 20%,
+    96% 58%, 50% 96%,
+    4% 58%, 4% 20%
+  ) !important;
+}
+
+/* DOWN — tapered top, flat bottom */
+#down.glow.dpad {
+  left: 120px !important;
+  top: 229px !important;
+  clip-path: polygon(
+    50% 4%, 96% 42%,
+    96% 80%, 80% 96%,
+    20% 96%, 4% 80%, 4% 42%
+  ) !important;
+}
+
+/* LEFT — pointed toward center */
+#left.glow.dpad {
+  left: 80px !important;
+  top: 195px !important;
+  clip-path: polygon(
+    20% 4%, 58% 4%, 96% 50%,
+    58% 96%, 20% 96%,
+    4% 80%, 4% 20%
+  ) !important;
+}
+
+/* RIGHT — pointed toward center */
+#right.glow.dpad {
+  left: 162px !important;
+  top: 195px !important;
+  clip-path: polygon(
+    42% 4%, 80% 4%, 96% 20%,
+    96% 80%, 80% 96%,
+    42% 96%, 4% 50%
+  ) !important;
+}
+
 </style>
 </head>
 <body>
