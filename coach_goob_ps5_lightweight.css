@@ -1,64 +1,16 @@
-/* Coach Goob Nightshift Blue — clean GPV Xbox-layout CSS.
-   GPV beta: GPV Classic Skin > Xbox One > Edit CSS URL.
-   Image hosted in goob17/coach-goob-controller.
-*/
-html, body { margin:0 !important; padding:0 !important; background:transparent !important; overflow:visible !important; }
-#gamepads.container, .container { position:relative !important; width:807px !important; min-width:807px !important; height:651px !important; min-height:651px !important; margin:0 !important; overflow:visible !important; }
-/* Use explicit absolute positioning. Prevent GPV's 50% centering and half-controller crop. */
+/* COACH GOOB V5 — REPLACE ENTIRE OLD CSS. No earlier offset rules. */
+html,body { margin:0!important;padding:0!important;overflow:hidden!important;background:transparent!important; }
+#gamepads.container { position:relative!important;width:668px!important;height:539px!important;margin:0!important;overflow:visible!important; }
 #gamepad-0.controller.xbox,
 #gamepad-0.controller.xbox.half,
-.controller.xbox.half,
-.controller.xbox {
-  display:block !important;
-  position:absolute !important;
-  top:0 !important;
-  left:0 !important;
-  right:auto !important;
-  bottom:auto !important;
-  width:807px !important;
-  height:651px !important;
-  margin:0 !important;
-  padding:0 !important;
-  transform:none !important;
-  translate:none !important;
-  background-image:url('https://raw.githubusercontent.com/goob17/coach-goob-controller/main/coach_goob_realistic_controller.png') !important;
-  background-size:807px 651px !important;
-  background-position:left top !important;
-  background-repeat:no-repeat !important;
-  overflow:visible !important;
+.controller.xbox.half {
+  display:block!important;position:absolute!important;top:0!important;left:0!important;
+  right:auto!important;bottom:auto!important;margin:0!important;padding:0!important;
+  transform:none!important;translate:none!important;
+  width:668px!important;height:539px!important;min-width:668px!important;
+  background-image:url('https://raw.githubusercontent.com/goob17/coach-goob-controller/main/coach_goob_realistic_controller.png')!important;
+  background-size:668px 539px!important;background-position:0 0!important;background-repeat:no-repeat!important;
 }
-/* Hide inactive alternate controller positions, leaving the first visible. */
-#gamepad-1, #gamepad-2, #gamepad-3 { display:none !important; }
-.xbox .quadrant, .xbox .meta { display:none !important; }
-/* GPV button states are retained and mapped over existing artwork. */
-.xbox .sticks { position:absolute !important; left:231px !important; top:273px !important; width:294px !important; height:98px !important; }
-.xbox .stick { position:absolute !important; width:80px !important; height:80px !important; border:2px solid #118bfb !important; box-sizing:border-box !important; border-radius:50% !important; background:radial-gradient(circle at 42% 33%, #293d51, #0e1520 58%, #03060c) !important; box-shadow:0 0 7px #006aff,inset 0 0 10px #000 !important; }
-.xbox .stick.left { left:0 !important; top:0 !important; }
-.xbox .stick.right { left:251px !important; top:0 !important; }
-.xbox .stick.pressed { box-shadow:0 0 18px #00bbff !important; }
-.xbox .abxy { position:absolute !important; left:564px !important; top:132px !important; width:166px !important; height:166px !important; }
-.xbox .button { position:absolute !important; width:58px !important; height:58px !important; border:0 !important; border-radius:50% !important; background:transparent !important; opacity:0 !important; }
-.xbox .button.pressed { opacity:1 !important; background:rgba(5,210,255,.45) !important; box-shadow:0 0 14px 7px #05bfff !important; }
-.xbox .a { left:55px !important; top:108px !important; }
-.xbox .b { left:109px !important; top:54px !important; }
-.xbox .x { left:0 !important; top:54px !important; }
-.xbox .y { left:55px !important; top:0 !important; }
-.xbox .dpad { position:absolute !important; left:92px !important; top:140px !important; width:123px !important; height:138px !important; }
-.xbox .face { position:absolute !important; background:rgba(0,195,255,.60) !important; box-shadow:0 0 13px #00aaff !important; opacity:0 !important; border-radius:10px !important; }
-.xbox .face.pressed { opacity:1 !important; }
-.xbox .face.up { left:39px !important; top:0 !important; width:49px !important; height:53px !important; }
-.xbox .face.down { left:39px !important; top:84px !important; width:49px !important; height:53px !important; }
-.xbox .face.left { left:0 !important; top:43px !important; width:49px !important; height:53px !important; }
-.xbox .face.right { left:78px !important; top:43px !important; width:49px !important; height:53px !important; }
-.xbox .arrows { position:absolute !important; left:208px !important; top:85px !important; width:379px !important; height:40px !important; }
-.xbox .back, .xbox .start { position:absolute !important; width:27px !important; height:40px !important; background:transparent !important; opacity:0 !important; }
-.xbox .back { left:0 !important; } .xbox .start { right:0 !important; }
-.xbox .back.pressed, .xbox .start.pressed { opacity:1 !important; background:rgba(19,161,255,.7) !important; border-radius:9px !important; }
-.xbox .bumpers { position:absolute !important; left:105px !important; top:73px !important; width:575px !important; height:36px !important; }
-.xbox .bumper { width:111px !important; height:36px !important; opacity:0 !important; background:rgba(0,174,255,.60) !important; border-radius:12px !important; }
-.xbox .bumper.pressed { opacity:1 !important; }
-.xbox .bumpers .right { right:0 !important; left:auto !important; }
-.xbox .triggers { position:absolute !important; left:107px !important; top:14px !important; width:575px !important; height:108px !important; }
-.xbox .trigger { width:111px !important; height:108px !important; opacity:0 !important; background:rgba(0,127,255,.6) !important; border-radius:25px !important; }
-.xbox .trigger.right { right:0 !important; left:auto !important; }
-.xbox .trigger.pressed { opacity:1 !important; }
+#gamepad-1,#gamepad-2,#gamepad-3 {display:none!important;}
+/* Hide default Xbox artwork and other overlays for initial alignment check */
+#gamepad-0 .sticks,#gamepad-0 .abxy,#gamepad-0 .dpad,#gamepad-0 .arrows,#gamepad-0 .bumpers,#gamepad-0 .triggers,#gamepad-0 .quadrant,#gamepad-0 .meta {visibility:hidden!important;}
