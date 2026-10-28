@@ -1,0 +1,71 @@
+/* COACH GOOB — NIGHTSHIFT BLUE | REALISTIC GAMEPAD VIEWER SKIN
+   Based on the original photorealistic Coach Goob controller artwork.
+   Artwork loaded from public GitHub raw image. Use with GPV Edit CSS URL.
+   GamepadViewer: select the Xbox overlay so the input classes match this CSS.
+   Controller input animation and movement are handled by GamepadViewer.
+*/
+body{margin:0!important;background:transparent!important;overflow:hidden!important;}
+.controller.xbox{position:relative!important;width:807px!important;height:651px!important;margin:0!important;
+background-image:url("https://raw.githubusercontent.com/goob17/coach-goob-controller/main/coach_goob_realistic_controller.png")!important;background-size:807px 651px!important;
+background-repeat:no-repeat!important;background-position:0 0!important;}
+.xbox .quadrant,.xbox .meta {display:none!important;}
+.xbox .sticks {position:absolute!important; width:265px!important; height:86px!important; top:343px!important; left:228px!important;}
+.xbox .stick {position:absolute!important; width:86px!important; height:86px!important; background:radial-gradient(circle at 38% 32%,#26364b 0%,#101826 49%,#02060e 75%)!important; border:4px solid #1290ff!important; border-radius:50%!important; box-sizing:border-box!important; box-shadow:0 0 8px #0066ff, inset 0 0 8px #000!important;}
+.xbox .stick.left {left:0!important;top:0!important;}
+.xbox .stick.right {left:265px!important;top:0!important;}
+.xbox .stick.pressed {border-color:#e8fbff!important;box-shadow:0 0 19px #00d5ff!important;}
+.xbox .abxy {position:absolute!important;left:569px!important;top:166px!important;width:166px!important;height:166px!important;}
+.xbox .button {position:absolute!important;width:58px!important;height:58px!important;background:none!important;border:0!important;box-sizing:border-box!important;border-radius:50%!important;opacity:0!important;}
+.xbox .button.pressed {opacity:1!important;background:rgba(5,210,255,.52)!important;box-shadow:0 0 14px 7px #05bfff,inset 0 0 12px #e4ffff!important;margin:0!important;}
+.xbox .a {left:54px!important;top:108px!important;}
+.xbox .b {left:108px!important;top:54px!important;}
+.xbox .x {left:0!important;top:54px!important;}
+.xbox .y {left:54px!important;top:0!important;}
+.xbox .dpad {position:absolute!important;left:94px!important;top:186px!important;width:122px!important;height:129px!important;}
+.xbox .face {position:absolute!important;background:rgba(0,195,255,.60)!important;box-shadow:0 0 13px #00aaff!important;opacity:0!important;border-radius:10px!important;}
+.xbox .face.pressed {opacity:1!important;}
+.xbox .face.up {width:48px!important;height:53px!important;left:37px!important;top:0!important;}
+.xbox .face.down {width:48px!important;height:53px!important;left:37px!important;top:76px!important;}
+.xbox .face.left {width:48px!important;height:53px!important;left:0!important;top:38px!important;}
+.xbox .face.right {width:48px!important;height:53px!important;left:74px!important;top:38px!important;}
+.xbox .arrows {position:absolute!important;top:142px!important;left:277px!important;width:254px!important;height:45px!important;}
+.xbox .back,.xbox .start {position:absolute!important;background:none!important;width:27px!important;height:45px!important;opacity:0!important;}
+.xbox .back {left:0!important;} .xbox .start {right:0!important;}
+.xbox .back.pressed,.xbox .start.pressed {opacity:1!important;background:#13a1ff!important;border-radius:9px!important;box-shadow:0 0 14px #00bbff!important;}
+.xbox .bumpers {position:absolute!important;left:94px!important;top:113px!important;width:619px!important;height:36px!important;}
+.xbox .bumper {width:111px!important;height:36px!important;background:rgba(0,174,255,.60)!important;box-shadow:0 0 20px #168dff!important;opacity:0!important;border-radius:12px!important;}
+.xbox .bumper.pressed {opacity:1!important;}
+.xbox .bumpers .right {right:0!important;left:auto!important;}
+.xbox .triggers {position:absolute!important;left:94px!important;top:0!important;width:619px!important;height:108px!important;}
+.xbox .trigger {width:111px!important;height:108px!important;background:rgba(0,127,255,.6)!important;box-shadow:0 0 17px #197bff!important;opacity:0!important;border-radius:25px!important;}
+.xbox .trigger.right {right:0!important;left:auto!important;}
+.xbox .trigger.pressed {opacity:1!important;}
+/* Hide built-in legacy graphics while preserving interactive input classes. */
+
+/* Precise placement onto the photorealistic artwork (scaled from original image) */
+.xbox .sticks {left:231px!important;top:244px!important;width:294px!important;height:98px!important;}
+.xbox .stick {width:80px!important;height:80px!important;background:radial-gradient(circle at 42% 33%,#293d51 0%,#0e1520 58%,#03060c 100%)!important;border:2px solid #118bfb!important;box-shadow:0 0 7px #006aff, inset 0 0 10px #000!important;}
+.xbox .stick.left {left:0!important;top:0!important;}
+.xbox .stick.right {left:251px!important;top:0!important;}
+.xbox .stick.pressed{border-color:#e7fcff!important;box-shadow:0 0 18px #00bbff!important;}
+.xbox .abxy{left:544px!important;top:115px!important;width:166px!important;height:166px!important;}
+.xbox .button {width:58px!important;height:58px!important;}
+.xbox .a{left:55px!important;top:108px!important;}
+.xbox .b{left:109px!important;top:54px!important;}
+.xbox .x{left:0px!important;top:54px!important;}
+.xbox .y{left:55px!important;top:0px!important;}
+.xbox .dpad{left:92px!important;top:115px!important;width:123px!important;height:138px!important;}
+.xbox .face.up{left:39px!important;top:0!important;width:49px!important;height:53px!important;}
+.xbox .face.down{left:39px!important;top:84px!important;width:49px!important;height:53px!important;}
+.xbox .face.left{left:0!important;top:43px!important;width:49px!important;height:53px!important;}
+.xbox .face.right{left:78px!important;top:43px!important;width:49px!important;height:53px!important;}
+.xbox .arrows{left:208px!important;top:85px!important;width:379px!important;height:40px!important;}
+.xbox .back{left:0!important;}
+.xbox .start{right:0!important;}
+.xbox .bumpers{left:105px!important;top:73px!important;width:575px!important;}
+.xbox .triggers{left:107px!important;top:14px!important;width:575px!important;}
+
+/* Artwork alignment tuning */
+.xbox .sticks{top:273px!important;}
+.xbox .dpad{top:140px!important;}
+.xbox .abxy{left:564px!important;top:132px!important;}
