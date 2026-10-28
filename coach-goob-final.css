@@ -1,0 +1,6 @@
+@import url("https://raw.githubusercontent.com/goob17/coach-goob-controller/main/coach_goob_ps5_v6.css");
+
+#gamepad-0.controller.xbox,
+#gamepad-0.controller.xbox.half {
+  background-image: url("https://raw.githubusercontent.com/goob17/coach-goob-controller/main/Neon%20Blue%20Coach%20Goob%20Controller.png") !important;
+}
