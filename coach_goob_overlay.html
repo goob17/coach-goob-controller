@@ -36,19 +36,6 @@
   .trigger.right {right:95px}
   #status {position:absolute;top:6px;left:50%;transform:translateX(-50%);font-size:11px;white-space:nowrap;border-radius:6px;background:#091826c9;color:#b9eeff;padding:3px 9px;z-index:10;pointer-events:none}
   body.broadcast #status {display:none}
-  #calibration {display:none;position:absolute;left:686px;top:38px;width:285px;padding:15px;
-    background:#0c1828;color:#e5f5ff;border:1px solid #37b7ff;border-radius:10px;
-    font:13px system-ui,Arial,sans-serif;z-index:99;box-sizing:border-box}
-  body.calibrate {overflow:visible;background:#f1f5f9}
-  body.calibrate #stage {overflow:visible}
-  body.calibrate #calibration {display:block}
-  #calibration h3{margin:0 0 8px;font-size:16px}
-  #calibration p{line-height:1.5}
-  #calibration button{background:#183e5e;color:white;border:1px solid #51bdfc;
-    border-radius:5px;padding:7px 9px;cursor:pointer;margin:3px}
-  #calibration button.selected{background:#087bc9}
-  #calibration pre{white-space:pre-wrap;word-break:break-all;background:#07111c;padding:8px;border-radius:5px;font-size:11px}
-  body.calibrate .glow.dpad.cal-active {opacity:1 !important}
 
 </style>
 </head>
@@ -62,21 +49,12 @@
   <div class="glow face" id="cross" data-symbol="×" style="left:547px;top:239px"></div>
   <div class="glow face" id="square" data-symbol="□" style="left:500px;top:194px"></div>
   <div class="glow dpad" id="up" style="left:122px;top:160px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(0 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
-  <div class="glow dpad" id="down" style="left:122px;top:231px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(180 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
-  <div class="glow dpad" id="left" style="left:79px;top:195px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(270 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
-  <div class="glow dpad" id="right" style="left:163px;top:195px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(90 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="down" style="left:122px;top:223px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(180 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="left" style="left:90px;top:192px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(270 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
+  <div class="glow dpad" id="right" style="left:154px;top:192px"><svg viewBox="0 0 44 44" aria-hidden="true"><path class="button-fill" transform="rotate(90 22 22)" d="M 11 2 Q 5 2 5 9 L 5 21 Q 5 24 8 27 L 19 38 Q 22 41 25 38 L 36 27 Q 39 24 39 21 L 39 9 Q 39 2 33 2 Z"/></svg></div>
   <div class="shoulder left" id="l1"></div><div class="shoulder right" id="r1"></div>
   <div class="trigger left" id="l2"></div><div class="trigger right" id="r2"></div>
   <div id="status">Connect controller, then press a button</div>
-</div>
-<div id="calibration">
-  <h3>Coach Goob · D-pad alignment</h3>
-  <p>Select a direction, then press the <b>keyboard arrow keys</b> to move its blue highlight 1 pixel at a time. Shift + arrow = 5px. The selected highlight stays lit for alignment.</p>
-  <div id="cal-buttons"><button data-dir="up">Up</button><button data-dir="down">Down</button><button data-dir="left">Left</button><button data-dir="right">Right</button></div>
-  <p id="cal-readout"></p>
-  <button id="copy-positions">Copy positions</button>
-  <pre id="cal-results"></pre>
-  <p style="font-size:11px">When aligned, send me the copied positions and I'll bake them into your normal overlay. No other controls are changed.</p>
 </div>
 <script>
 'use strict';
@@ -86,37 +64,6 @@ const el = id => document.getElementById(id);
 const labels = {0:'cross',1:'circle',2:'square',3:'triangle',4:'l1',5:'r1',6:'l2',7:'r2',12:'up',13:'down',14:'left',15:'right'};
 const params=new URLSearchParams(location.search);
 if (params.has('broadcast')) document.body.classList.add('broadcast');
-const calibrating=params.has('calibrate');
-if(calibrating){
-  document.body.classList.add('calibrate');
-  const dirs=['up','down','left','right'];
-  let selected='up';
-  const coords=Object.fromEntries(dirs.map(d=>[d,{
-    x:parseInt(el(d).style.left,10),y:parseInt(el(d).style.top,10)
-  }]));
-  function refreshCal(){
-    dirs.forEach(d=>{
-      el(d).style.left=coords[d].x+'px';el(d).style.top=coords[d].y+'px';
-      el(d).classList.toggle('cal-active',d===selected);
-    });
-    document.querySelectorAll('#cal-buttons button').forEach(b=>b.classList.toggle('selected',b.dataset.dir===selected));
-    el('cal-readout').textContent=`${selected.toUpperCase()}: X ${coords[selected].x}, Y ${coords[selected].y}`;
-    el('cal-results').textContent=dirs.map(d=>`${d}: left ${coords[d].x}px; top ${coords[d].y}px`).join('\n');
-  }
-  document.querySelectorAll('#cal-buttons button').forEach(b=>b.addEventListener('click',()=>{selected=b.dataset.dir;refreshCal();}));
-  document.addEventListener('keydown',e=>{
-    const step=e.shiftKey?5:1;
-    const delta={ArrowUp:[0,-step],ArrowDown:[0,step],ArrowLeft:[-step,0],ArrowRight:[step,0]}[e.key];
-    if(!delta)return;
-    e.preventDefault();coords[selected].x+=delta[0];coords[selected].y+=delta[1];refreshCal();
-  });
-  el('copy-positions').addEventListener('click',()=>{
-    const values=dirs.map(d=>`${d}: left ${coords[d].x}px; top ${coords[d].y}px`).join('\n');
-    if(navigator.clipboard?.writeText)navigator.clipboard.writeText(values).then(()=>{el('copy-positions').textContent='Copied!';}).catch(()=>{el('copy-positions').textContent='Select the text below';});
-  });
-  refreshCal();
-}
-
 const status=el('status');
 let detected=false;
 function frame(){
